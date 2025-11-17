@@ -1,460 +1,325 @@
-🛡️ Multi-Agent AI System for Phishing Email Detection and Response Automation
+# 🛡️ Multi-Agent AI System for Phishing Email Detection and Response Automation
+### **Developed by: _Sudarshan Sridhar_**
 
-This project is a full-stack phishing email detection system that integrates:
+A complete end-to-end phishing email detection and response automation system that combines:
 
-Classical ML (TF-IDF + Logistic Regression)
+- **Classical Machine Learning** (TF-IDF + Logistic Regression)  
+- **Rule-based heuristics**  
+- **Threat Intelligence Integration** (OpenPhish + URLHaus)  
+- **Local LLM Agents via Ollama** (Qwen 2.5, Llama 3.1)  
+- **A Multi-Agent LangGraph Pipeline**  
+- **FastAPI backend**  
+- **Streamlit analytics dashboard**  
+- **Robustness evaluation tools** (adversarial mutations, cross-model comparison)
 
-Rule-based Heuristics
+This system is optimized for **local execution, high accuracy, high explainability, and reproducible workflows** — suitable for research, enterprise simulations, SOC analysis, and LLM-augmented email security.
 
-Threat Intelligence (OpenPhish + URLHaus)
+---
 
-Local LLM Agents using Ollama (Qwen 2.5, Llama 3.1)
+# 📚 Table of Contents
 
-A Multi-Agent LangGraph Pipeline
+1. Features  
+2. System Architecture  
+3. Project Structure  
+4. Datasets  
+5. Machine Learning Pipeline  
+6. LangGraph Multi-Agent Pipeline  
+7. Threat Intelligence  
+8. Local LLM Integration (Ollama)  
+9. Frontend Dashboard  
+10. Backend API Endpoints  
+11. Reproducibility Guide  
+12. Testing  
+13. Robustness Utilities  
+14. Author  
 
-FastAPI Backend
+---
 
-Streamlit Frontend Dashboard
+# ⭐ Features
 
-Robustness Tools (Adversarial mutations, Cross-model testing)
+### **1. Multi-Agent Detection Pipeline**
+- Ingestion & preprocessing  
+- ML classifier  
+- Rule-based heuristics  
+- Threat intelligence lookup  
+- LLM explainability  
+- LLM safe reply generation  
+- SOC recommendations  
+- Forensic summary generation  
 
-Everything is optimized for local execution, complete reproducibility, high explainability, and enterprise-style forensic outputs.
+### **2. Hybrid ML + LLM**
+| Task | Handled By |
+|------|------------|
+| Classification | ML model |
+| Reasoning | LLM |
+| Guided responses | LLM |
+| Forensics | LLM |
 
-📚 Table of Contents
+### **3. Threat Intelligence**
+- OpenPhish URLs  
+- URLHaus malicious hosts  
+- Daily auto-refresh  
+- Cached locally  
 
-Features
+### **4. Evaluation Dashboard**
+- Label distribution  
+- TF-IDF token importance  
+- URL statistics  
+- Text length statistics  
 
-System Architecture
+### **5. Performance Tools**
+- ROC & PR curves  
+- Threshold tuning  
+- Confusion matrices  
+- Classification report  
 
-Project Structure
+### **6. Robustness Tools**
+- Adversarial mutations  
+- Cross-model LLM comparison  
 
-Datasets
+---
 
-Machine Learning Pipeline
+# 🧠 System Architecture
 
-LangGraph Multi-Agent Pipeline
+```
+               ┌──────────────────────────┐
+               │     Streamlit Frontend   │
+               └──────────────┬───────────┘
+                              │ REST API
+                              ▼
+               ┌──────────────────────┐
+               │     FastAPI Backend  │
+               └──────────┬───────────┘
+                          │
+                  LangGraph Pipeline
+                          │
+   ┌──────────────┬───────────────┬───────────────┬
+   ▼              ▼               ▼               ▼
+ML Classifier   Heuristics   Threat Intel     Local LLM Agents
+```
 
-Threat Intelligence Integration
+---
 
-Local LLM Integration (Ollama)
+# 📂 Project Structure
 
-Frontend Dashboard
-
-Backend API Endpoints
-
-Full Reproducibility Guide
-
-Testing
-
-Robustness Utilities
-
-⭐ Features
-1. Multi-agent detection pipeline
-
-Ingestion + pre-processing
-
-ML classifier (TF-IDF → Logistic Regression)
-
-Heuristic scoring
-
-Threat intelligence lookup
-
-Explainability via LLM
-
-Safe reply generation
-
-SOC recommendations
-
-Forensic report generation
-
-2. Hybrid ML + LLM
-
-ML handles classification
-
-LLM handles reasoning, guidance, response generation
-
-Avoids hallucinations by separating concerns
-
-3. Full Threat Intelligence Support
-
-Integrates OpenPhish URL feeds
-
-Integrates URLHaus malicious host lists
-
-Cached locally & auto-refreshed daily
-
-4. Dataset Evaluation Dashboard
-
-Label distribution
-
-TF-IDF token importance
-
-Word count & URL count graphs
-
-Length statistics
-
-Source dataset distribution
-
-5. Performance Analytics
-
-Threshold sweep for optimal phishing threshold
-
-ROC & PR curves
-
-Confusion matrices
-
-Full classification report
-
-6. Robustness Tools
-
-Adversarial mutations (typos, URL obfuscation, noise sentences)
-
-Cross-model comparison across Ollama LLMs
-
-🧠 System Architecture
-
-                   ┌──────────────────────────┐
-                   │     Streamlit Frontend   │
-                   │   (UI for Analysis/Eval) │
-                   └────────────┬─────────────┘
-                                │ REST
-                                ▼
-                    ┌────────────────────────┐
-                    │     FastAPI Backend    │
-                    │   /analyze_email etc   │
-                    └───────────┬────────────┘
-                                │
-                           LangGraph Pipeline
-                                │
-        ┌───────────────┬───────────────┬──────────────┬
-        ▼               ▼               ▼              ▼
-   ML Classifier   Heuristic Engine   Threat Intel    Local LLM Agents
-
-
-📂 Project Structure
-
-PROJECT/
+```
+PHISH-LC/
 │
-├── backend/                                  # Backend logic (FastAPI + Core Engine)
-│   ├── api/                                   # FastAPI entrypoint
-│   │   ├── __init__.py
-│   │   └── main.py
-│   │
-│   ├── core/                                  # Core ML, heuristics, TI, LLM utilities
-│   │   ├── __init__.py
-│   │   ├── config.py                          # Global configuration
-│   │   ├── dataset_utils.py                   # Dataset processing helpers
-│   │   ├── eval_utils.py                      # Evaluation metrics & utilities
-│   │   ├── email_utils.py                     # Feature extraction, URL parsing, etc.
-│   │   ├── llm_manager.py                     # Ollama-based LLM interface
-│   │   ├── model_loader.py                    # TF-IDF + LR model loader
-│   │   ├── robustness_utils.py                # Adversarial mutations + cross-model tests
-│   │   └── ti_manager.py                      # Threat Intelligence (OpenPhish + URLHaus)
-│   │
-│   ├── graph/                                 # Multi-Agent LangGraph pipeline
-│   │   ├── __init__.py
-│   │   ├── graph_builder.py                   # Pipeline assembly
-│   │   ├── nodes.py                           # All agent nodes (ingest → forensic)
-│   │   └── state.py                           # EmailAnalysisState TypedDict
-│   │
+├── backend/
+│   ├── api/
+│   ├── core/
+│   ├── graph/
 │   └── models/
-│       └── email_classifier.joblib            # Saved TF-IDF vectorizer + LR model
 │
-├── data/                                      # All datasets
+├── data/
 │   ├── manual_tests/
-│   │   └── email_test_dataset.txt             # Handwritten evaluation samples
-│   │
 │   ├── processed/
-│   │   └── combined.jsonl                     # Unified training dataset (post-cleaning)
-│   │
 │   └── raw/
-│       ├── CEAS_08.csv                        # Raw CEAS dataset
-│       ├── Enron.csv                          # Raw Enron corporate dataset
-│       └── Nazario.csv                        # Raw phishing dataset
 │
-├── frontend/                                  # Streamlit visualization dashboard
-│   └── app.py
-│
-├── training/                                  # Training & preprocessing scripts
-│   ├── prepare_dataset.py                     # Normalization pipeline → combined.jsonl
-│   └── train_classifier.py                    # Train TF-IDF + Logistic Regression
-│
-├── quick_test.py                              # Quick check: ML + LLM + TI outputs
-├── requirements.txt                           # Required dependencies
-├── test_graph.py                              # Full LangGraph pipeline tester
-└── README.md                                  # Project documentation
+├── frontend/
+├── training/
+├── quick_test.py
+├── test_graph.py
+├── requirements.txt
+└── README.md
+```
 
-📊 Datasets
-Included datasets (local only, not pushed to GitHub):
+---
 
-| Dataset       | Type     | Notes                        |
-| ------------- | -------- | ---------------------------- |
-| **Enron**     | Benign   | Corporate emails             |
-| **CEAS 2008** | Mixed    | Anti-spam conference dataset |
-| **Nazario**   | Phishing | Malware researcher corpus    |
+# 📊 Datasets
 
-These are processed by:
+| Dataset | Type |
+|--------|------|
+| Enron | Benign |
+| CEAS 2008 | Mixed |
+| Nazario | Phishing |
 
+Processed using:
+```
 training/prepare_dataset.py
+```
 
+Output:
+```
+data/processed/combined.jsonl
+```
 
-Output file:
+---
 
-data/processed/combined.jsonl   (ignored in Git)
+# 🔬 Machine Learning Pipeline
 
-🔬 Machine Learning Pipeline
+- TF-IDF vectorizer (60k features, bigrams)  
+- Logistic Regression  
+- Balanced class weights  
+- Stored at:
 
-Training code lives in:
-
-training/train_classifier.py
-
-Steps:
-
-1. Load combined.jsonl
-
-2. Build text = subject + body
-
-3. TF-IDF vectorizer (60k features, 1–2 n-grams)
-
-4. Logistic Regression (balanced class weights)
-
-5. Save model to:
-
+```
 backend/models/email_classifier.joblib
+```
 
-Prediction API:
+Predict using:
 
+```python
 from backend.core.model_loader import predict_proba
 predict_proba("email text")
+```
 
-🧩 LangGraph Multi-Agent Pipeline
+---
 
-Nodes executed in order:
+# 🧩 LangGraph Multi-Agent Pipeline
 
+Order:
+
+```
 ingest → filter → threat_intel → explain → response → soc → forensics
+```
 
+Each step enriches the shared state.
 
-State contains:
+---
 
-ML probabilities
+# 🌐 Threat Intelligence Integration
 
-heuristic scores
+- OpenPhish URL feed  
+- URLHaus malicious hosts  
+- Cached + refreshed daily  
+- Integrated into risk scoring  
 
-threat intel hits
+---
 
-risk scores
+# 🤖 Local LLM Integration (Ollama)
 
-final decisions
+Models used:
 
-LLM explanation
-
-user guidance
-
-SOC actions
-
-forensic summary
-
-🌐 Threat Intelligence Integration
-
-TI manager handles:
-
-OpenPhish (URLs)
-
-URLHaus (malicious hosts)
-
-Disk caching + in-memory caching
-
-Daily refresh
-
-Fast membership checks
-
-🤖 Local LLM Integration (Ollama)
-
-Supported tested models:
-
+```
 qwen2.5:3b
-
 qwen2.5:7b
-
 llama3.1:8b
+```
 
-Used for:
+Used for reasoning, explanation, and reply generation.
 
-explainability
+---
 
-safe reply generation
-
-Not used for classification — improves reliability.
-
-🖥️ Frontend Dashboard (Streamlit)
+# 🖥️ Frontend Dashboard (Streamlit)
 
 Tabs:
 
-1. Email Analyzer
+### **Email Analyzer**
+- Decision + risk score  
+- ML + heuristics + TI  
+- LLM explanation  
+- Safe reply  
+- SOC actions  
+- Forensic summary  
 
-Decision, risk, ML probabilities
+### **Evaluation & Performance**
+- Dataset insights  
+- Token importance  
+- ROC & PR curves  
+- Confusion matrices  
+- Robustness tools  
 
-URL extractions
+---
 
-TI hits
+# 🔗 Backend API Endpoints
 
-LLM explanation
+| Endpoint | Description |
+|----------|-------------|
+| POST /analyze_email | Full pipeline |
+| POST /eval_summary | Offline evaluation |
+| POST /threshold_sweep | PR/recall tuning |
+| POST /roc_curve | ROC points |
+| POST /pr_curve | PR points |
+| POST /confusion_at_threshold | Confusion matrix |
+| POST /adversarial_mutations | Mutated variants |
+| POST /cross_model_compare | Compare LLMs |
 
-Safe reply suggestion
+---
 
-SOC actions
+# 🔁 Full Reproducibility Guide
 
-Forensic notes
+### **1. Clone**
 
-Raw JSON
-
-2. Evaluation & Performance
-
-Dataset summary
-
-TF-IDF feature insights
-
-Word count & URL count graphs
-
-Threshold sweep
-
-ROC curve
-
-Precision–Recall curve
-
-Confusion matrices
-
-Robustness tools
-
-🔗 Backend API Endpoints (FastAPI)
-
-| Endpoint                       | Purpose                   |
-| ------------------------------ | ------------------------- |
-| `POST /analyze_email`          | Full multi-agent pipeline |
-| `POST /eval_summary`           | Offline evaluation        |
-| `POST /threshold_sweep`        | Precision/recall tuning   |
-| `POST /roc_curve`              | ROC data                  |
-| `POST /pr_curve`               | PR curve                  |
-| `POST /confusion_at_threshold` | Confusion matrix          |
-| `POST /adversarial_mutations`  | Mutated variants          |
-| `POST /cross_model_compare`    | Multi-LLM comparison      |
-
-
-🔁 Full Reproducibility Guide
-
-Below are exact commands to rebuild everything from scratch.
-
-1️⃣ Clone the repository
+```bash
 git clone https://github.com/sudarshan-sridhar/Multi-Agent-AI-System-for-Phishing-Email-Detection-and-Response-Automation.git
 cd Multi-Agent-AI-System-for-Phishing-Email-Detection-and-Response-Automation
+```
 
-2️⃣ Create a virtual environment
+### **2. Virtual Environment**
+
 Windows:
+```bash
 python -m venv env
-env\Scripts\activate
+env\Scriptsctivate
+```
 
 Mac/Linux:
+```bash
 python3 -m venv env
 source env/bin/activate
+```
 
-3️⃣ Install dependencies
+### **3. Install Dependencies**
+
+```bash
 pip install -r requirements.txt
+```
 
-4️⃣ Install Ollama + models
+### **4. Install Ollama + Models**
 
-Install Ollama:
-
-https://ollama.ai
-
-Then pull the models:
-
+```bash
 ollama pull qwen2.5:3b
 ollama pull qwen2.5:7b
 ollama pull llama3.1:8b
+```
 
-5️⃣ Prepare dataset
+### **5. Prepare Dataset**
 
-Place raw datasets inside:
-
-data/raw/
-
-
-Then run:
-
+```bash
 cd training
 python prepare_dataset.py
+```
 
+### **6. Train Classifier**
 
-Output:
-
-data/processed/combined.jsonl
-
-6️⃣ Train classifier
+```bash
 python train_classifier.py
+```
 
+### **7. Start Backend**
 
-Output:
-
-backend/models/email_classifier.joblib
-
-7️⃣ Start backend
+```bash
 cd ../backend/api
 uvicorn main:app --reload --port 8000
+```
 
+### **8. Start Frontend**
 
-Backend runs at:
-
-http://127.0.0.1:8000
-
-8️⃣ Start frontend
+```bash
 cd ../../frontend
 streamlit run app.py
+```
 
+---
 
-Frontend opens at:
+# 🧪 Testing
 
-http://localhost:8501
+### Quick test:
 
-🧪 Testing
-Quick ML + TI + LLM sanity test:
+```bash
 python quick_test.py
+```
 
-Full graph run:
+### Full pipeline test:
+
+```bash
 python test_graph.py
+```
 
-🛡 Robustness Utilities
+---
 
-Adversarial Mutations
-1. Random typos
+# 👤 Author
 
-2. URL obfuscation
+**Sudarshan Sridhar**
 
-3. Extra noise sentences
-
-Cross-Model Comparison
-
-1. Run pipeline across multiple LLMs
-
-2. Detect instability
-
-Both tools are included in the Streamlit UI.
-
-🚀 Future Work
-
-Potential enhancements:
-
-Fine-tuned LLM classifier
-
-BERT/RoBERTa phishing classifier
-
-RNN/LSTM hybrid models
-
-Automated retraining pipelines
-
-UI authentication + multi-user support
-
-👤 Author
-
-Developed by:
-
-Sudarshan Sridhar

@@ -1,0 +1,183 @@
+# Benign + phishing samples for manual testing of the Phish Multi-Agent Analyzer UI.
+# Not used in training; only for demos and sanity checks.
+
+Benign Email Samples
+
+1. Benign (level of toughness: very easy – completely harmless)
+Subject: Meeting Reminder – Project Sync
+Body:
+Hi team,
+This is a reminder that our weekly project sync is scheduled tomorrow at 10 AM in Conference Room B.
+Please be on time.
+Regards,
+Sudarshan
+
+2. Benign (level of toughness: easy)
+Subject: Receipt for Your Recent Purchase
+Body:
+Hello,
+Attached is the receipt for your order at TechMart.
+Let us know if you need any assistance.
+Thank you,
+TechMart Support
+
+3. Benign (level of toughness: medium – contains a URL but legitimate)
+Subject: Your University Portal Login Link
+Body:
+Hi Sudarshan,
+You can access your semester grade report at the official portal:
+https://my.university.edu/login
+Best regards,
+Academic Services
+
+4. Benign (level of toughness: easy)
+Subject: Gym Membership Renewal Confirmation
+Body:
+Dear Member,
+Your gym membership has been successfully renewed for the next 12 months.
+Have a great workout year ahead!
+Fitness Center Team
+
+5. Benign (level of toughness: medium – long body, non-threatening)
+Subject: Invitation to Join Robotics Club
+Body:
+Hello Sudarshan,
+We are excited to invite you to join the Robotics Club for the Winter 2025 session.
+Our sessions will include machine vision, autonomous agents, and ROS basics.
+Let us know if you're interested!
+Regards,
+UM-D Robotics Club
+
+6. Benign (level of toughness: tricky benign – contains bank + request but legitimate wording)
+Subject: Statement Available – Chase Bank
+Body:
+Hi,
+Your monthly statement is now available on the Chase app.
+Please log in through the official app or your usual browser.
+We will never ask for your password.
+Chase Notifications
+
+7. Benign (level of toughness: easy)
+Subject: Your Reservation is Confirmed
+Body:
+Hello Sudarshan,
+Your table reservation at Spice Garden Restaurant is confirmed for 7:00 PM tonight.
+See you soon!
+
+8. Benign (level of toughness: medium)
+Subject: Laptop Servicing Complete
+Body:
+Hi,
+Your Lenovo LOQ servicing has been completed.
+You may pick it up at the service desk anytime today.
+Thanks,
+Lenovo Care
+
+9. Benign (level of toughness: very easy)
+Subject: Happy Birthday!
+Body:
+Wishing you a wonderful year ahead.
+Enjoy your day!
+Best wishes,
+Your Friend
+
+10. Benign (level of toughness: medium – long text, zero phishing intent)
+Subject: Internship Opportunities at Robotics Lab
+Body:
+Dear Sudarshan,
+We are pleased to inform you about available internship openings in our Robotics Research Lab.
+If you are interested, please send your resume and a brief statement of purpose.
+Warm regards,
+Dr. R. Natarajan
+Robotics Research Lab, UM-Dearborn
+
+
+Phishing Email Samples
+
+1. Phishing (level of toughness: easy – obvious phishing)
+Subject: Your Account Will Be Deleted in 24 Hours
+Body:
+Dear user,
+Your account is scheduled for immediate deletion.
+Prevent loss of data by logging in now:
+http://secure-verify-account-now.xyz
+Support Team
+
+2. Phishing (level of toughness: medium)
+Subject: Unusual Login Attempt – Verify Immediately
+Body:
+Hello,
+We detected a login attempt from a new device. Please confirm your identity to avoid suspension:
+https://login-security-alert-check.com/verify
+Thank you,
+Security Team
+
+3. Phishing (level of toughness: strong & subtle)
+Subject: Payment Confirmation Needed
+Body:
+Hi,
+We were unable to process your latest payment. To avoid interruption of services, kindly review your billing details at:
+https://billing-update-secureportal.com/session
+Best regards,
+Billing Support
+
+4. Phishing (level of toughness: very strong – disguised brand)
+Subject: Important: Update Your Microsoft 365 Credentials
+Body:
+Dear Sudarshan,
+Your Microsoft 365 access has been restricted due to an expired security token.
+Restore access here:
+https://login-m365-authverify.com/reset
+Regards,
+Microsoft Account Team
+
+5. Phishing (level of toughness: subtle & short)
+Subject: Invoice #88322
+Body:
+Your invoice is attached. Please review to avoid penalty charges:
+https://invoice-check-fast.com
+Accounts
+
+6. Phishing (level of toughness: medium)
+Subject: Scholarship Application Incomplete
+Body:
+Hello Sudarshan,
+Your scholarship form is incomplete. Submit your details now to avoid rejection:
+http://university-scholarship-verify.com
+Admin Office
+
+7. Phishing (level of toughness: very strong – realistic)
+Subject: UM-Dearborn: Action Required on Your Student Portal
+Body:
+Dear Sudarshan,
+A new document has been added to your academic portal.
+Please authenticate using the link below:
+https://um-dearborn-student-access.com/login
+Failure to verify may delay your registration.
+Registrar’s Office
+
+8. Phishing (level of toughness: strong – fake delivery)
+Subject: Your UPS Delivery Is On Hold
+Body:
+Hello,
+We were unable to deliver your package due to missing address information.
+Provide details here to reschedule delivery:
+https://ups-verify-info.com/update
+UPS Support
+
+9. Phishing (level of toughness: easy)
+Subject: Congratulations! You Won a Gift Card
+Body:
+You have won a $500 Amazon gift card!
+Claim now: http://amaz0n-giveaway-claim.com
+Promo Team
+
+10. Phishing (level of toughness: extremely strong – highly realistic corporate style)
+Subject: Payroll Update Required – Action Needed
+Body:
+Dear Employee,
+We have updated our payroll system and need your confirmation to ensure successful salary processing.
+Please complete the verification form below:
+https://hr-payroll-secureportal.net/update
+Thank you,
+HR Team

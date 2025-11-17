@@ -1,0 +1,23 @@
+# API + web framework
+fastapi
+uvicorn
+streamlit
+
+# LLM + agents
+langgraph
+langchain
+ollama
+
+# Security / URL features
+tldextract
+requests
+python-multipart
+pydantic
+
+# ML stack
+joblib
+scikit-learn
+pandas
+numpy
+scipy
+matplotlib
